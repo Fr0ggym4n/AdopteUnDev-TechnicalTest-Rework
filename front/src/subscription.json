@@ -1,0 +1,36 @@
+{
+	"subscriptions": [
+		{
+			"id": "67890",
+			"userId": "4567",
+			"userName": "Jean Ferrot",
+			"offerId": "123",
+			"dateSubscription": "2022-01-01",
+			"unitCount": 1
+		},
+		{
+			"id": "09876",
+			"userId": "192083",
+			"userName": "Michel Quere",
+			"offerId": "456",
+			"dateSubscription": "2021-12-03",
+			"unitCount": 1
+		},
+		{
+			"id": "1290",
+			"userId": "4567",
+			"userName": "Jean Ferrot",
+			"offerId": "456",
+			"dateSubscription": "2022-03-01",
+			"endOfSubscription": "2022-05-01"
+		},
+		{
+			"id": "09821",
+			"userId": "192083",
+			"userName": "Michel Quere",
+			"offerId": "789",
+			"dateSubscription": "2022-02-03",
+			"endOfSubscription": "2023-02-03"
+		}
+	]
+}

@@ -1,0 +1,31 @@
+{
+    "users": [
+        {
+            "id": "4567",
+            "name": "Jean Ferrot",
+            "email": "jeanferrot32@yopmail.com",
+            "password": "1password",
+            "isAdmin": false
+
+        },
+        {
+            "id": "01890",
+            "name": "Michael Borro",
+            "email": "micbor34@yopmail.com",
+            "password": "2password",
+            "isAdmin": false
+        },
+        {
+            "id": "192083",
+            "name": "Michel Quere",
+            "email": "michelqq@yopmail.com",
+            "isAdmin": false
+        },
+        {
+            "id": "00012",
+            "name": "Jean Castex",
+            "email": "jeancastex@yopmail.com",
+            "isAdmin": true
+        }
+    ]
+}

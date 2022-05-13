@@ -1,0 +1,25 @@
+{
+    "offers": [
+        {
+			"id": "123",
+			"title": "1 month",
+			"engagement": 1,
+			"price": 9.99,
+			"description": "1 month discover our universe and change you're future"
+		},
+		{
+			"id": "456",
+			"title": "3 months",
+			"engagement": 3,
+			"price": 15.00,
+			"description": "Pro value value, spirit of god 3 months for pure pleasure!"
+		},
+		{
+			"id": "789",
+			"title": "year",
+			"engagement": 12,
+			"price": 75.00,
+			"description": "Hope you like it, that's save money btw!"
+		}
+    ]
+}
