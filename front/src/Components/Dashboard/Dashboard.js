@@ -2,10 +2,18 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { Table } from 'react-bootstrap';
 import subscriptions from '../../subscription.json';
+import offers from '../../offers.json';
 
 function Dashboard() {
 
     const data = subscriptions.subscriptions;
+    const dataOffers = offers.offers;
+
+    const endOfSubscription = (startDate, engagement) => {
+        const formatStartDate = new Date(startDate);
+        const endDate = new Date(formatStartDate.setMonth(formatStartDate.getMonth() + engagement));
+        return endDate.toDateString();
+    }
 
     return (
         <>
@@ -21,48 +29,35 @@ function Dashboard() {
                         </tr>
                     </thead>
                     <tbody>
-                        { data ? data.map(user => 
+                        {data ? data.map(user =>
                             <tr key={user.id}>
                                 <td>{user.userName}</td>
+                                {dataOffers ? dataOffers.map(findTitle => 
+                                                              findTitle.id === user.offerId ?
+                                                              <td key={findTitle.id}>{findTitle.title}</td>
+                                                              : null) 
+                                : <td>No Offers</td>}
                                 <td>{user.offerId}</td>
-                                <td>{user.dateSubscription}</td>
-                                <td>{user.endOfSubscription}</td>
-                                <td>{}</td>
-                            </tr>
-                        ) : <div>No User</div> }
-                        {/* {data ? data?.map((user) => {
-                            if (user.offerId) {
-                                return data?.subscriptions.map((sub) => {
-                                    if (sub.id === user.offerId) {
-                                        return (
-                                            <tr key={user.id}>
-                                                <td>{user.name}</td>
-                                                <td>{sub.duration}</td>
-                                            </tr>
-
-
-
-            ----------------------------TODO :---------------
-
-                                            Prompt the price
-                                            and la date de fin.
-
-                                        )
-                                    }
-                                    return null;
-                                });
-                            }
-                            return null;
-                        }) : null} */}
+                                <td>{new Date(user.dateSubscription).toDateString()}</td>
+                                {dataOffers ? dataOffers.map(endSubscription => 
+                                                             endSubscription.id === user.offerId ?
+                                                             <td key={endSubscription.id}>{endOfSubscription(user.dateSubscription, endSubscription.engagement)}</td> : null)
+                                : <td></td>}
+                                {dataOffers ? dataOffers.map(subscription =>
+                                                             subscription.id === user.offerId ?
+                                                             <td key={subscription.id}>{subscription.price}</td> : null
+                                ) : 
+                                <td>Unsubscribe</td>}
+                                </tr>
+                        ) : <div>No User</div>}
                     </tbody>
                 </Table>
             </div>
             <div>
-                {/* <Button variant='primary'>Calculer le CA</Button> */}
                 <Link to='/turnover'>Calculate turnover</Link>
             </div>
         </>
     )
 }
 
-export default Dashboard
+export default Dashboard;
