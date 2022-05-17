@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
+import { endOfSubscription } from '../../utils/utilities';
 // import subscription from '../../subscription.json';
 
 function Turnover() {
@@ -25,15 +26,17 @@ function Turnover() {
 
 
     return (
-        <>
-            <div>
+        <div className="container-fluid">
+            <div className="d-flex justify-content-center">
                 <h2>Calculer le CA</h2>
-                <input>Date 1</input>
-                <input>Date 2</input>
-                <Button variant="primary">Calculer</Button>
             </div>
-        </>
+            <form className="d-flex justify-content-center">
+                <input type="date" className='form-date' value={Date.now()} onChange />
+                <input type="date" className='form-date' />
+                <Button variant="primary" className='form-date'>Calculer</Button>
+            </form>
+        </div>
     )
 }
 
-export default Turnover
+export default Turnover;
