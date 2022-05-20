@@ -1,23 +1,24 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Table } from 'react-bootstrap';
-import { endOfSubscription } from '../../utils/utilities';
+import { endOfSubscription, pricePerMonth, totalPrice } from '../../utils/utilities';
 import subscriptions from '../../subscription.json';
 import offers from '../../offers.json';
 
 function Dashboard() {
-
     const dataSubscriptions = subscriptions.subscriptions;
     const dataOffers = offers.offers;
-    // console.log(dataSubscriptions);
-    // console.log(dataOffers);
 
     const dataJoin = dataSubscriptions?.map(
         subscription => {
             const offer = dataOffers?.filter(
-                offer => offer.id === subscription.offerId);
+                offer => 
+                    offer.id === subscription.offerId
+            );
             const offerTitle = offer.length > 0 ? offer[0].title : "unknown";
             const startDate = new Date(subscription.dateSubscription).toDateString();
+            const offerPrice = offer.length > 0 ? offer[0].price : 0;
+            const yearPrice = offer.length > 0 ? offerPrice * offer[0].engagement : 0;
             let endDate = offer.length > 0 ? endOfSubscription(startDate, offer[0].engagement) : "";
             let background = "";
 
@@ -37,32 +38,11 @@ function Dashboard() {
                 offerTitle: offerTitle,
                 startDate: startDate,
                 endDate: endDate,
-                price: 0,
-                totalPrice: 0
+                price: offerPrice,
+                totalPrice: yearPrice 
             };
         }
     );
-
-    console.log(dataJoin);
-    // dataOffers ? dataOffers.map(subscription =>
-    //         subscription.id === user.offerId ?
-    //             <td key={subscription.id}>{subscription.price}</td> : null
-    //     ) :
-    //         <td>Unsubscribe</td>
-
-    // {dataOffers ? dataOffers.map(findTitle =>
-    //                                     findTitle.id === user.offerId ?
-    //                                         <td key={findTitle.id}>
-    //                                             {findTitle.title}
-    //                                         </td>
-    //                                         : null)
-    //                                     : <td>No Offers</td>}
-
-    // price et total price
-    // + menage
-    // Allez au plus simple !
-    // jamais plus d'une operation par ligne
-    // vaux mieux regénérer le tableau
 
     return (
         <>
@@ -85,8 +65,8 @@ function Dashboard() {
                                 <td>{join.offerTitle}</td>
                                 <td>{join.startDate}</td>
                                 <td>{join.endDate}</td>
-                                <td>{join.price}</td>
-                                <td>{join.totalPrice}</td>
+                                <td>{join.price + pricePerMonth}</td>
+                                <td>{join.totalPrice + totalPrice}</td>
                             </tr>
                         )}
                     </tbody>

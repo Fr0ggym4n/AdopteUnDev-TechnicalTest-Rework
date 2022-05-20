@@ -3,3 +3,6 @@ export const endOfSubscription = (startDate, engagement) => {
     const endDate = new Date(formatStartDate.setMonth(formatStartDate.getMonth() + engagement));
     return endDate;
 };
+
+export const pricePerMonth = "$ /month";
+export const totalPrice = "$";
